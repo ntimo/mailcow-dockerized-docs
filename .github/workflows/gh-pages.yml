@@ -30,11 +30,11 @@ jobs:
         python3 -m pip install --upgrade pip
         python3 -m pip install -r ./requirements.txt
 
-    - run: mkdocs build
+    - run: sh docs/generator/buildhtml.sh
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./site
+        PUBLISH_DIR: ./docs/generator/build
