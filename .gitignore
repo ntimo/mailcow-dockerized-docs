@@ -1,1 +1,6 @@
 site
+docs/generator/doc
+docs/generator/src
+docs/generator/build
+docs/generator/mkdocs.yml
+.DS_STORE

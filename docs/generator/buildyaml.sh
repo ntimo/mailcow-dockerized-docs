@@ -47,13 +47,13 @@ navpart() {
 	done
 }
 
-echo -e 'site_name: mailcow: dockerized documentation
+echo -e 'site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
 repo_url: https://github.com/mailcow/mailcow-dockerized
 repo_name: mailcow/mailcow-dockerized
 edit_uri: blob/master
 site_description: Netdata Documentation
-copyright: Copyright &copy; 2019 André Peters
+copyright: "Copyright &copy; 2019 André Peters"
 docs_dir: '${docs_dir}'
 site_dir: '${site_dir}'
 #use_directory_urls: false
@@ -118,10 +118,10 @@ nav:'
 
 navpart 1 . "README" ""
 
-navpart 1 . . "Information & Support"
+navpart 1 . . "'Information & Support'"
 
 echo -ne "    - 'docs/index.md'
-- Prerequisites:
+- 'Prerequisites':
     - 'docs/prerequisite-system.md'
     - 'docs/prerequisite-dns.md'
 "
