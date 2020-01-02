@@ -10,8 +10,10 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="Netdata Documentation">
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/">
+      
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/docs/">
       
       
       
@@ -33,17 +35,23 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="custom/img/favicon.ico">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
     
     
       
-        <title>mailcow: dockerized documentation</title>
+        <title>🐮 + 🐋 = 💕 - mailcow: dockerized documentation</title>
       
     
     
       <link rel="stylesheet" href="assets/stylesheets/application.1b62728e.css">
       
+        <link rel="stylesheet" href="assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
       
     
     
@@ -59,40 +67,19 @@
     <link rel="stylesheet" href="assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="extra.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css">
+    
+      <link rel="stylesheet" href="custom/css/netdata.css">
     
     
-      
-        
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-92608422-4", "mailcow.github.io")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="light-green">
   
     <svg class="md-svg">
       <defs>
@@ -127,21 +114,22 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            <span class="md-header-nav__topic">
-              mailcow: dockerized documentation
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Information & Support
-              
-            </span>
+            
+              <span class="md-header-nav__topic">
+                mailcow: dockerized documentation
+              </span>
+              <span class="md-header-nav__topic">
+                🐮 + 🐋 = 💕
+              </span>
+            
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -164,8 +152,67 @@
     </div>
   </div>
 </div>
+          
         
       </div>
+
+      <!-- netdata -->
+      <style>
+        .language-selector li {
+          list-style: none;
+        }
+
+        .language-option.selected {
+          background-color: #ccc;
+        }
+      </style>
+      <script>
+        function getLanguage() {
+          const lang = window.location.pathname.split("/")[1];
+
+          if (lang.length == 0 || lang.length > 2) {
+            return "en";
+          }
+
+          return lang;
+        }
+
+        function languagePrefix(lang) {
+          if (lang === "en") {
+            return "";
+          }
+
+          return `/${lang}`;
+        }
+
+        function updatePathname(pathname, lang) {
+          if (currentLang !== "en") {
+            const parts = pathname.split("/");
+            parts.shift();
+            parts.shift();
+            pathname = `/${parts.join("/")}`;
+          }
+
+          return `${languagePrefix(lang)}${pathname}`;
+        }
+
+        function setLanguage(sel) {
+          if (sel.value === currentLang) {
+            return;
+          }
+
+          window.location.pathname = updatePathname(window.location.pathname, sel.value);
+        }
+      </script>
+
+      <div style="vertical-align: middle; white-space: nowrap; padding-left: 20px;" class="md-flex__cell md-flex__cell--shrink">
+        <img src="/custom/img/geography-16.png" style="vertical-align: middle;"/>
+        <select id="sel" onchange="setLanguage(this);" style="vertical-align: middle; background-color: #3f51b5; color: white; border: none;">
+          <option href="#" value='en'>English</option>
+          <option href="#" value='de'>German</option>
+        </select>
+      </div>
+
       
         <div class="md-flex__cell md-flex__cell--shrink">
           <div class="md-header-nav__source">
@@ -241,6 +288,39 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Information & Support
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Information & Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
   
 
 
@@ -252,11 +332,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Information & Support
+        🐮 + 🐋 = 💕
       </label>
     
-    <a href="." title="Information & Support" class="md-nav__link md-nav__link--active">
-      Information & Support
+    <a href="./" title="🐮 + 🐋 = 💕" class="md-nav__link md-nav__link--active">
+      🐮 + 🐋 = 💕
     </a>
     
       
@@ -327,49 +407,6 @@
     
   </li>
 
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
-    
-    <label class="md-nav__link" for="nav-2">
-      Prerequisites
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        Prerequisites
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="prerequisite-system/" title="Prepare Your System" class="md-nav__link">
-      Prepare Your System
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="prerequisite-dns/" title="DNS Setup" class="md-nav__link">
-      DNS Setup
-    </a>
-  </li>
-
         
       </ul>
     </nav>
@@ -386,11 +423,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
-      Installation, Update & Migration
+      Prerequisites
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Installation, Update & Migration
+        Prerequisites
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -401,8 +438,8 @@
 
 
   <li class="md-nav__item">
-    <a href="i_u_m_install/" title="Installation" class="md-nav__link">
-      Installation
+    <a href="prerequisite-system/" title="Prerequisite system" class="md-nav__link">
+      Prerequisite system
     </a>
   </li>
 
@@ -413,1136 +450,8 @@
 
 
   <li class="md-nav__item">
-    <a href="i_u_m_update/" title="Update" class="md-nav__link">
-      Update
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="i_u_m_migration/" title="Migration" class="md-nav__link">
-      Migration
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      First Steps (optional)
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        First Steps (optional)
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-ssl/" title="SSL" class="md-nav__link">
-      SSL
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-rspamd_ui/" title="Rspamd Web UI" class="md-nav__link">
-      Rspamd Web UI
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-rp/" title="Reverse Proxy" class="md-nav__link">
-      Reverse Proxy
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-snat/" title="SNAT" class="md-nav__link">
-      SNAT
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-disable_ipv6/" title="Disable IPv6" class="md-nav__link">
-      Disable IPv6
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-relayhost/" title="Setup a relayhost" class="md-nav__link">
-      Setup a relayhost
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-logging/" title="Logging" class="md-nav__link">
-      Logging
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-local_mta/" title="Local MTA on Docker host" class="md-nav__link">
-      Local MTA on Docker host
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="firststeps-sync_jobs_migration/" title="Sync Jobs Migration" class="md-nav__link">
-      Sync Jobs Migration
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      Models
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Models
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="model-sender_rcv/" title="Sender and receiver model" class="md-nav__link">
-      Sender and receiver model
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="model-acl/" title="ACL" class="md-nav__link">
-      ACL
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      Debugging & Troubleshooting
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        Debugging & Troubleshooting
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="debug/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="debug-logs/" title="Logs" class="md-nav__link">
-      Logs
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="debug-attach_service/" title="Attach a Container" class="md-nav__link">
-      Attach a Container
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="debug-reset_pw/" title="Reset Passwords" class="md-nav__link">
-      Reset Passwords
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="debug-rm_volumes/" title="Remove Persistent Data" class="md-nav__link">
-      Remove Persistent Data
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="debug-common_problems/" title="Common Problems" class="md-nav__link">
-      Common Problems
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="debug-admin_login_sogo/" title="Admin login to SOGo" class="md-nav__link">
-      Admin login to SOGo
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
-    
-    <label class="md-nav__link" for="nav-7">
-      Backup & Restore
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
-        Backup & Restore
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
-    
-    <label class="md-nav__link" for="nav-7-1">
-      Helper script
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-7-1">
-        Helper script
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="b_n_r_backup/" title="Backup" class="md-nav__link">
-      Backup
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="b_n_r_restore/" title="Restore" class="md-nav__link">
-      Restore
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-2" type="checkbox" id="nav-7-2">
-    
-    <label class="md-nav__link" for="nav-7-2">
-      Manually
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-7-2">
-        Manually
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-backup_restore-maildir/" title="Maildir" class="md-nav__link">
-      Maildir
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-backup_restore-mysql/" title="MySQL" class="md-nav__link">
-      MySQL
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
-    
-    <label class="md-nav__link" for="nav-8">
-      Usage & Examples
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-8">
-        Usage & Examples
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-1" type="checkbox" id="nav-8-1">
-    
-    <label class="md-nav__link" for="nav-8-1">
-      mailcow UI
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-1">
-        mailcow UI
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-mailcow_ui-config/" title="Configuration" class="md-nav__link">
-      Configuration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-mailcow_ui-bl_wl/" title="Blacklist / Whitelist" class="md-nav__link">
-      Blacklist / Whitelist
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-mailcow_ui-spamfilter/" title="Spamfilter" class="md-nav__link">
-      Spamfilter
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-mailcow_ui-spamalias/" title="Temporary email aliase" class="md-nav__link">
-      Temporary email aliase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-mailcow_ui-tagging/" title="Tagging" class="md-nav__link">
-      Tagging
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-mailcow_ui-tfa/" title="Two-Factor Authentication" class="md-nav__link">
-      Two-Factor Authentication
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
-    
-    <label class="md-nav__link" for="nav-8-2">
-      Postfix
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-2">
-        Postfix
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-postfix-disable_sender_verification/" title="Disable Sender Addresses Verification" class="md-nav__link">
-      Disable Sender Addresses Verification
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-postfix-attachment_size/" title="Max. message size (attachment size)" class="md-nav__link">
-      Max. message size (attachment size)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-postfix-pflogsumm/" title="Statistics with pflogsumm" class="md-nav__link">
-      Statistics with pflogsumm
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-3" type="checkbox" id="nav-8-3">
-    
-    <label class="md-nav__link" for="nav-8-3">
-      Unbound
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-3">
-        Unbound
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-unbound-fwd/" title="Using an external DNS service" class="md-nav__link">
-      Using an external DNS service
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-4" type="checkbox" id="nav-8-4">
-    
-    <label class="md-nav__link" for="nav-8-4">
-      Dovecot
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-4">
-        Dovecot
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-dovecot-any_acl/" title="(Re-)Enable any and all authenticated ACL settings" class="md-nav__link">
-      (Re-)Enable any and all authenticated ACL settings
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-dovecot-expunge/" title="Expunge a User's Mails" class="md-nav__link">
-      Expunge a User's Mails
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-dovecot-mail-crypt/" title="Mail crypt" class="md-nav__link">
-      Mail crypt
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-dovecot-more/" title="More Examples with DOVEADM" class="md-nav__link">
-      More Examples with DOVEADM
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-dovecot-vmail-volume/" title="Move vmail volume" class="md-nav__link">
-      Move vmail volume
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-dovecot-idle_interval/" title="IMAP IDLE interval" class="md-nav__link">
-      IMAP IDLE interval
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-dovecot-fts/" title="FTS (Solr)" class="md-nav__link">
-      FTS (Solr)
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-nginx/" title="Nginx" class="md-nav__link">
-      Nginx
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-redis/" title="Redis" class="md-nav__link">
-      Redis
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-rspamd/" title="Rspamd" class="md-nav__link">
-      Rspamd
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-sogo/" title="SOGo" class="md-nav__link">
-      SOGo
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-9" type="checkbox" id="nav-8-9">
-    
-    <label class="md-nav__link" for="nav-8-9">
-      Docker
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-9">
-        Docker
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-docker-cust_dockerfiles/" title="Customize Dockerfiles" class="md-nav__link">
-      Customize Dockerfiles
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-docker-dc_bash_compl/" title="Docker Compose Bash Completion" class="md-nav__link">
-      Docker Compose Bash Completion
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-why_unbound/" title="Why unbound?" class="md-nav__link">
-      Why unbound?
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-autodiscover_config/" title="Autodiscover / Autoconfig" class="md-nav__link">
-      Autodiscover / Autoconfig
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-80_to_443/" title="Redirect HTTP to HTTPS" class="md-nav__link">
-      Redirect HTTP to HTTPS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-change_config/" title="Adjust Service Configurations" class="md-nav__link">
-      Adjust Service Configurations
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="u_e-deinstall/" title="Deinstall" class="md-nav__link">
-      Deinstall
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
-    
-    <label class="md-nav__link" for="nav-9">
-      Client Configuration
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
-        Client Configuration
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/" title="Overview" class="md-nav__link">
-      Overview
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-android/" title="Android" class="md-nav__link">
-      Android
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-apple/" title="Apple macOS / iOS" class="md-nav__link">
-      Apple macOS / iOS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-emclient/" title="eM Client" class="md-nav__link">
-      eM Client
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-kontact/" title="KDE Kontact" class="md-nav__link">
-      KDE Kontact
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-outlook/" title="Microsoft Outlook" class="md-nav__link">
-      Microsoft Outlook
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-thunderbird/" title="Mozilla Thunderbird" class="md-nav__link">
-      Mozilla Thunderbird
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-windows/" title="Windows Mail" class="md-nav__link">
-      Windows Mail
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-windowsphone/" title="Windows Phone" class="md-nav__link">
-      Windows Phone
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="client/client-manual/" title="Manual configuration" class="md-nav__link">
-      Manual configuration
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
-    
-    <label class="md-nav__link" for="nav-10">
-      Third party apps
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-10">
-        Third party apps
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="third_party-thunderbird/" title="SOGo Integrator for Thunderbird" class="md-nav__link">
-      SOGo Integrator for Thunderbird
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="third_party-roundcube/" title="Roundcube" class="md-nav__link">
-      Roundcube
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="third_party-portainer/" title="Portainer" class="md-nav__link">
-      Portainer
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="third_party-gogs/" title="Gogs" class="md-nav__link">
-      Gogs
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="third_party-gitea/" title="Gitea" class="md-nav__link">
-      Gitea
+    <a href="prerequisite-dns/" title="Prerequisite dns" class="md-nav__link">
+      Prerequisite dns
     </a>
   </li>
 
@@ -1636,7 +545,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="_1">🐮 + 🐋 = 💕<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
@@ -1677,7 +586,7 @@
 <li>Add whitelisted hosts to forward mail to mailcow</li>
 <li>Fail2ban-like integration</li>
 <li>Quarantine system</li>
-<li>A lot more...</li>
+<li>A lot more&hellip;</li>
 </ul>
 <p>mailcow: dockerized comes with multiple containers linked in one bridged network.
 Each container represents a single application.</p>
@@ -1729,14 +638,28 @@ Each container represents a single application.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
+          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
         
-          <a href="prerequisite-system/" title="Prepare Your System" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+        
+          <a href="prerequisite-system/" title="Prerequisite system" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Prepare Your System
+                Prerequisite system
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -1752,36 +675,40 @@ Each container represents a single application.</p>
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2019 André Peters
+            Copyright &copy; 2019 André Peters | <a href="/docs/privacy-policy/">Privacy Policy</a> | <a href="/docs/terms-of-use/">Terms of Use</a>
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
       </div>
       
-  <div class="md-footer-social">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.css">
-    
-      <a href="http://mailcow.email" class="md-footer-social__link fa fa-globe"></a>
-    
-      <a href="https://github.com/mailcow" class="md-footer-social__link fa fa-github-alt"></a>
-    
-  </div>
-
+        
+      
     </div>
   </div>
 </footer>
+<script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-64295674-3",""),ga("set","anonymizeIp",!0),ga("send","pageview","/doc"+window.location.pathname);var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(a){a.host!=document.location.host&&a.addEventListener("click",function(){var e=a.getAttribute("data-md-action")||"follow";ga("send","event","outbound",e,a.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+<script>
+  let currentLang = getLanguage();
+
+  let sel = document.getElementById('sel');
+  let opts = sel.options;
+  for (let opt, j = 0; opt = opts[j]; j++) {
+    if (opt.value == currentLang) {
+      sel.selectedIndex = j;
+      break;
+    }
+  }
+
+</script>
       
     </div>
     
       <script src="assets/javascripts/application.808e90bb.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
-        <script src="clients.js"></script>
+        <script src="custom/javascripts/cookie-consent.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
       
     
   </body>
