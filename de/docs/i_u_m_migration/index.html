@@ -67,8 +67,6 @@
     <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css">
-    
       <link rel="stylesheet" href="../../custom/css/netdata.css">
     
     
@@ -178,12 +176,12 @@
             return "";
           }
 
-          return `/${lang}`;
+          return `/mailcow-dockerized-docs/${lang}`;
         }
 
         function updatePathname(pathname, lang) {
           if (currentLang !== "en") {
-            const parts = pathname.split("/");
+            const parts = pathname.split("/mailcow-dockerized-docs/");
             parts.shift();
             parts.shift();
             pathname = `/${parts.join("/")}`;
@@ -202,7 +200,7 @@
       </script>
 
       <div style="vertical-align: middle; white-space: nowrap; padding-left: 20px;" class="md-flex__cell md-flex__cell--shrink">
-        <img src="/custom/img/geography-16.png" style="vertical-align: middle;"/>
+        <img src="/mailcow-dockerized-docs/custom/img/geography-16.png" style="vertical-align: middle;"/>
         <select id="sel" onchange="setLanguage(this);" style="vertical-align: middle; background-color: #3f51b5; color: white; border: none;">
           <option href="#" value='en'>English</option>
           <option href="#" value='de'>German</option>
@@ -449,7 +447,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@some.other.mach
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2019 André Peters | <a href="/docs/privacy-policy/">Privacy Policy</a> | <a href="/docs/terms-of-use/">Terms of Use</a>
+            Copyright &copy; 2019 André Peters
           </div>
         
       </div>
@@ -494,10 +492,6 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@some.other.mach
         
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
-      
-        <script src="../../custom/javascripts/cookie-consent.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
       
     
   </body>

@@ -64,12 +64,12 @@
             return "";
           }
 
-          return `/${lang}`;
+          return `/mailcow-dockerized-docs/${lang}`;
         }
 
         function updatePathname(pathname, lang) {
           if (currentLang !== "en") {
-            const parts = pathname.split("/");
+            const parts = pathname.split("/mailcow-dockerized-docs/");
             parts.shift();
             parts.shift();
             pathname = `/${parts.join("/")}`;
@@ -88,7 +88,7 @@
       </script>
 
       <div style="vertical-align: middle; white-space: nowrap; padding-left: 20px;" class="md-flex__cell md-flex__cell--shrink">
-        <img src="/custom/img/geography-16.png" style="vertical-align: middle;"/>
+        <img src="/mailcow-dockerized-docs/custom/img/geography-16.png" style="vertical-align: middle;"/>
         <select id="sel" onchange="setLanguage(this);" style="vertical-align: middle; background-color: #3f51b5; color: white; border: none;">
           <option href="#" value='en'>English</option>
           <option href="#" value='de'>German</option>
