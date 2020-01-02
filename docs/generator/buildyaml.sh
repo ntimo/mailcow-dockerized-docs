@@ -67,11 +67,7 @@ theme:
     favicon: custom/img/favicon.ico
     language: '${language}'
 extra_css:
-  - "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css"
   - "custom/css/netdata.css"
-extra_javascript:
-  - "custom/javascripts/cookie-consent.js"
-  - "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"
 markdown_extensions:
  - extra
  - abbr
