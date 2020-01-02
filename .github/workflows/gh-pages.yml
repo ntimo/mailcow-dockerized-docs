@@ -27,11 +27,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apt install -y bash
         python3 -m pip install --upgrade pip
         python3 -m pip install -r ./requirements.txt
 
-    - run: sh docs/generator/buildhtml.sh
+    - run: |
+        bash docs/generator/buildhtml.sh
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
