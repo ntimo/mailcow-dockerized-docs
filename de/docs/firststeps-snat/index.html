@@ -185,7 +185,7 @@
 
         function updatePathname(pathname, lang) {
           if (currentLang !== "en") {
-            const parts = pathname.split("/mailcow-dockerized-docs/");
+            const parts = pathname.split("/");
             parts.shift();
             parts.shift();
             pathname = `/${parts.join("/")}`;
