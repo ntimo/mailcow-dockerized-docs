@@ -45,10 +45,10 @@ prep_html() {
 	# Generate mkdocs.yaml
 	${GENERATOR_DIR}/buildyaml.sh ${MKDOCS_DIR} ${SITE_DIR} ${lang}>${MKDOCS_CONFIG_FILE}
 
-	echo "Fixing links"
+#	echo "Fixing links"
 
 	# Fix links (recursively, all types, executing replacements)
-	${GENERATOR_DIR}/checklinks.sh -rax
+#	${GENERATOR_DIR}/checklinks.sh -rax
 
 	echo "Calling mkdocs"
 
