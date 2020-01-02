@@ -64,10 +64,8 @@ theme:
       primary: "blue grey"
       accent: "light green"
     custom_dir: custom/themes/material
-    favicon: custom/img/favicon.ico
+    favicon: images/favicon.png
     language: '${language}'
-extra_css:
-  - "custom/css/netdata.css"
 markdown_extensions:
  - extra
  - abbr
