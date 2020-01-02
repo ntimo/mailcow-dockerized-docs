@@ -20,6 +20,10 @@ echo "Copying files"
 rm -rf ${SRC_DIR}
 mkdir ${SRC_DIR}
 find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.md" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.png" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.jpg" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.php" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.sh" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
 
 # Copy Netdata html resources
 cp -a ./${GENERATOR_DIR}/custom ./${SRC_DIR}/
@@ -56,8 +60,8 @@ prep_html() {
 	mkdocs build --config-file="${MKDOCS_CONFIG_FILE}"
 
 	# Replace index.html with DOCUMENTATION/index.html. Since we're moving it up one directory, we need to remove ../ from the links
-	echo "Replacing index.html with DOCUMENTATION/index.html"
-	sed 's/\.\.\///g' ${GENERATOR_DIR}/${SITE_DIR}/DOCUMENTATION/index.html > ${GENERATOR_DIR}/${SITE_DIR}/index.html
+	echo "Replacing index.html with docs/index.html"
+	sed 's/\.\.\///g' ${GENERATOR_DIR}/${SITE_DIR}/docs/index.html > ${GENERATOR_DIR}/${SITE_DIR}/index.html
 
 }
 
