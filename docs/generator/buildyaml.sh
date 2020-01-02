@@ -120,8 +120,9 @@ navpart 1 . "README" ""
 
 navpart 1 . . "Information & Support"
 
-echo -ne "    - 'index.md'
+echo -ne "    - 'docs/index.md'
 - Prerequisites:
     - 'docs/prerequisite-system.md'
-    - 'docs/prerequisite-dns.md'"
+    - 'docs/prerequisite-dns.md'
+"
 
