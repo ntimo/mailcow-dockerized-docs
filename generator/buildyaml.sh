@@ -70,6 +70,7 @@ extra_javascript:
   - "custom/javascript/clients.js"
 extra_css:
   - "custom/css/netdata.css"
+  - "custom/css/extra.css"
 markdown_extensions:
   - codehilite:
       guess_lang: true
@@ -144,7 +145,7 @@ echo -ne "    - 'docs/index.md'
       - 'Using an external DNS service': 'u_e-unbound-fwd.md'
   - 'Dovecot':
       - '(Re-)Enable any and all authenticated ACL settings': 'u_e-dovecot-any_acl.md'
-      - 'Expunge a User's Mails': 'u_e-dovecot-expunge.md'
+      - 'Expunge a Users Mails': 'u_e-dovecot-expunge.md'
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
       - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md'
