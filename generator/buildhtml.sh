@@ -69,6 +69,6 @@ done
 # Remove cloned projects and temp directories
 rm -rf ${GO_D_DIR} ${DOCS_DIR} ${SRC_DIR}
 
-cp CNAME ${GENERATOR_DIR}/build
+#cp CNAME ${GENERATOR_DIR}/build
 
 echo "Finished"
