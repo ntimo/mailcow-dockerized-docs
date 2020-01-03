@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GENERATOR_DIR="docs/generator"
+GENERATOR_DIR="generator"
 
 docs_dir="${1}"
 site_dir="${2}"
@@ -144,7 +144,7 @@ echo -ne "    - 'docs/index.md'
       - 'Using an external DNS service': 'u_e-unbound-fwd.md'
   - 'Dovecot':
       - '(Re-)Enable any and all authenticated ACL settings': 'u_e-dovecot-any_acl.md'
-      - 'Expunge a User's Mails": 'u_e-dovecot-expunge.md'
+      - 'Expunge a User's Mails': 'u_e-dovecot-expunge.md'
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
       - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md'
