@@ -67,7 +67,7 @@
     <link rel="stylesheet" href="assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="custom/css/netdata.css">
+      <link rel="stylesheet" href="custom/css/mailcow.css">
     
       <link rel="stylesheet" href="custom/css/extra.css">
     
@@ -156,7 +156,7 @@
         
       </div>
 
-      <!-- netdata -->
+      <!-- lang switcher -->
       <style>
         .language-selector li {
           list-style: none;
@@ -168,7 +168,7 @@
       </style>
       <script>
         function getLanguage() {
-          const lang = window.location.pathname.split("/")[1];
+          const lang = window.location.pathname.split("/")[2];
 
           if (lang.length == 0 || lang.length > 2) {
             return "en";
