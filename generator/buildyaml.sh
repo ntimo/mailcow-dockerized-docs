@@ -48,7 +48,7 @@ navpart() {
 }
 
 echo -e 'site_name: "mailcow: dockerized documentation"
-site_url: https://mailcowdocs.440044.xyz/
+site_url: https://ntimo.github.io/mailcow-dockerized-docs/
 repo_url: https://github.com/mailcow/mailcow-dockerized
 repo_name: mailcow/mailcow-dockerized
 edit_uri: blob/master
