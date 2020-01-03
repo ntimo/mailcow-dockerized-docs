@@ -168,7 +168,7 @@
       </style>
       <script>
         function getLanguage() {
-          const lang = window.location.pathname.split("/")[2];
+          const lang = window.location.pathname.split("/")[1];
 
           if (lang.length == 0 || lang.length > 2) {
             return "en";
@@ -182,7 +182,7 @@
             return "";
           }
 
-          return `/${lang}`;
+          return `/mailcow-dockerized-docs/${lang}`;
         }
 
         function updatePathname(pathname, lang) {
