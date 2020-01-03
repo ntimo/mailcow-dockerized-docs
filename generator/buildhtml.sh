@@ -6,7 +6,7 @@
 
 set -e
 
-# Assumes that the script is executed either from the htmldoc folder (by netlify), or from the root repo dir (as originally intended)
+# Assumes that the script is executed either from the htmldoc folder, or from the root repo dir (as originally intended)
 currentdir=$(pwd | awk -F '/' '{print $NF}')
 echo "$currentdir"
 if [ "$currentdir" = "generator" ]; then
@@ -15,18 +15,13 @@ fi
 GENERATOR_DIR="generator"
 SRC_DIR="${GENERATOR_DIR}/src"
 
-# Copy all Netdata .md files to docs/generator/src. Exclude htmldoc itself and also the directory node_modules generatord by Netlify
+# Copy all docs files to generator/src
 echo "Copying files"
 rm -rf ${SRC_DIR}
 mkdir ${SRC_DIR}
 cp -r docs ${SRC_DIR}
-#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.md" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.png" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.jpg" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.php" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.sh" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
 
-# Copy Netdata html resources
+# Copy mailcow html resources
 cp -a ./${GENERATOR_DIR}/custom ./${SRC_DIR}/
 
 LOC_DIR="localization"

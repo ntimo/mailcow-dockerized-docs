@@ -69,7 +69,7 @@ theme:
 extra_javascript:
   - "custom/javascript/clients.js"
 extra_css:
-  - "custom/css/netdata.css"
+  - "custom/css/mailcow.css"
   - "custom/css/extra.css"
 markdown_extensions:
   - codehilite:
