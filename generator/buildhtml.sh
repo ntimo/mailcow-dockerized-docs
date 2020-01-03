@@ -12,18 +12,19 @@ echo "$currentdir"
 if [ "$currentdir" = "generator" ]; then
 	cd ../..
 fi
-GENERATOR_DIR="docs/generator"
+GENERATOR_DIR="generator"
 SRC_DIR="${GENERATOR_DIR}/src"
 
 # Copy all Netdata .md files to docs/generator/src. Exclude htmldoc itself and also the directory node_modules generatord by Netlify
 echo "Copying files"
 rm -rf ${SRC_DIR}
 mkdir ${SRC_DIR}
-find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.md" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.png" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.jpg" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.php" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
-find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.sh" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+cp -r docs ${SRC_DIR}
+#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.md" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.png" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.jpg" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.php" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
+#find . -type d \( -path ./${GENERATOR_DIR} -o -path ./node_modules \) -prune -o -name "*.sh" -exec cp -prv --parents '{}' ./${SRC_DIR}/ ';'
 
 # Copy Netdata html resources
 cp -a ./${GENERATOR_DIR}/custom ./${SRC_DIR}/
@@ -48,11 +49,6 @@ prep_html() {
 
 	# Generate mkdocs.yaml
 	${GENERATOR_DIR}/buildyaml.sh ${MKDOCS_DIR} ${SITE_DIR} ${lang}>${MKDOCS_CONFIG_FILE}
-
-#	echo "Fixing links"
-
-	# Fix links (recursively, all types, executing replacements)
-#	${GENERATOR_DIR}/checklinks.sh -rax
 
 	echo "Calling mkdocs"
 
