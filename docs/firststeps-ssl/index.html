@@ -182,7 +182,7 @@
             return "";
           }
 
-          return `/mailcow-dockerized-docs/${lang}`;
+          return `/${lang}`;
         }
 
         function updatePathname(pathname, lang) {
@@ -193,7 +193,7 @@
             pathname = `/${parts.join("/")}`;
           }
 
-          return `${languagePrefix(lang)}${pathname}`;
+          return `/mailcow-dockerized-docs/${languagePrefix(lang)}${pathname}`;
         }
 
         function setLanguage(sel) {
