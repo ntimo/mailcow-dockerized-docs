@@ -10,7 +10,7 @@ chown -R root: rc/
 
 Create a file `data/web/rc/config/config.inc.php` with the following content.
 
-**Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password.
+**Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password. The "db_prefix" is optional but recommended.
 
 ```
 <?php
@@ -55,6 +55,7 @@ $config['managesieve_conn_options'] = array(
 // 1 - add Vacation section,
 // 2 - add Vacation section, but hide Filters section
 $config['managesieve_vacation'] = 1;
+$config['db_prefix'] = 'mailcow_rc1';
 
 ```
 
@@ -94,6 +95,37 @@ $config['password_algorithm'] = 'ssha256';
 $config['password_algorithm_prefix'] = '{SSHA256}';
 $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
 ```
+
+### Integrate CardDAV addressbooks in Roundcube
+
+Download the latest release of [RCMCardDAV](https://github.com/blind-coder/rcmcarddav/) to the Roundcube plugin directory and extract it (here `rc/plugins`):
+```
+cd data/web/rc/plugins
+wget -O - https://github.com/blind-coder/rcmcarddav/releases/download/v3.0.3/carddav-3.0.3.tar.bz2 | tar xfvj -
+chown -R root: carddav/
+```
+  
+Copy the file `config.inc.php.dist` to `config.inc.php` (here in `rc/plugins/carddav`) and append the following preset to the end of the file - don't forget to replace `mx.example.org` with your own hostname:
+```
+$prefs['SOGo'] = array(
+    'name'         =>  'SOGo',
+    'username'     =>  '%u',
+    'password'     =>  '%p',
+    'url'          =>  'https://mx.example.org/SOGo/dav/%u/',
+    'carddav_name_only' => true,
+    'use_categories' => true,
+    'active'       =>  true,
+    'readonly'     =>  false,
+    'refresh_time' => '02:00:00',
+    'fixed'        =>  array( 'active', 'name', 'username', 'password', 'refresh_time' ),
+    'hide'        =>  false,
+);
+```
+Please note, that this preset only integrates the default addressbook (the one that's named "Personal Address Book" and can't be deleted). Additional addressbooks are currently not automatically detected but can be manually added within the roundecube settings.
+
+Enable the plugin by adding `carddav` to `$config['plugins']` in `rc/config/config.inc.php`.
+
+If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks are accessable, append `$config['address_book_type'] = '';` to the config file `data/web/rc/config/config.inc.php`.
 
 ---
 

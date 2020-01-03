@@ -8,6 +8,9 @@ HTTP_PORT=8080
 HTTPS_BIND=127.0.0.1
 HTTPS_PORT=8443
 ```
+
+This will also change the bindings inside the Nginx container! This is important, if you decide to use a proxy within Docker.
+
 **IMPORTANT:** Do not use port 8081, 9081 or 65510!
 
 Recreate affected containers by running `docker-compose up -d`.
@@ -32,23 +35,20 @@ Required modules:
 ```
 a2enmod rewrite proxy proxy_http headers ssl
 ```
-We rewrite to HTTPS, but keep requests to autoconfig.* on a plain session.
 
-Let's Encrypt will follow our rewrite, certificate requests will work fine.
+Let's Encrypt will follow our rewrite, certificate requests in mailcow will work fine.
 
 **Take care of highlighted lines.**
 
-``` apache hl_lines="2 12 13 19 23 24 29 30"
+``` apache hl_lines="2 10 11 17 22 23 24 25 30 31"
 <VirtualHost *:80>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
   ServerAlias autoconfig.*
   RewriteEngine on
 
-  RewriteCond %{HTTP_HOST} ^autoconfig\. [NC]
-  RewriteRule ^ - [S=1]
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}# [L,NE,R=permanent]
-  RewriteRule ^ /autoconfig.php [PT]
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R=301,L]
 
   ProxyPass / http://127.0.0.1:8080/
   ProxyPassReverse / http://127.0.0.1:8080/
@@ -59,8 +59,11 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 <VirtualHost *:443>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
+  ServerAlias autoconfig.*
 
   # You should proxy to a plain HTTP session to offload SSL processing
+  ProxyPass /Microsoft-Server-ActiveSync http://127.0.0.1:8080/Microsoft-Server-ActiveSync connectiontimeout=4000
+  ProxyPassReverse /Microsoft-Server-ActiveSync http://127.0.0.1:8080/Microsoft-Server-ActiveSync
   ProxyPass / http://127.0.0.1:8080/
   ProxyPassReverse / http://127.0.0.1:8080/
   ProxyPreserveHost On
@@ -82,35 +85,21 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 ```
 
 ### Nginx
-In our Nginx reverse proxy template, we rewrite all requests to HTTPS, while keeping autoconfig.* domains on a plain session.
 
 Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 13 23 26 27"
+``` hl_lines="4 10 13 14 19 33"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.*;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
   return 301 https://$host$request_uri;
 }
 server {
-  listen 80;
-  listen [::]:80;
-  server_name autoconfig.*;
-  rewrite ^/(.*)$ /autoconfig.php last;
-  location / {
-    proxy_pass http://127.0.0.1:8080/;
-    proxy_set_header Host $http_host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    client_max_body_size 0;
-  }
-}
-server {
   listen 443;
+  listen [::]:443;
   server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
 
   ssl on;
@@ -118,6 +107,20 @@ server {
   ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
   ssl_ciphers HIGH:!aNULL:!MD5;
+
+  location /Microsoft-Server-ActiveSync {
+    proxy_pass http://127.0.0.1:8080/Microsoft-Server-ActiveSync;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_connect_timeout 75;
+    proxy_send_timeout 3650;
+    proxy_read_timeout 3650;
+    proxy_buffers 64 256k;
+    client_body_buffer_size 512k;
+    client_max_body_size 0;
+  }
 
   location / {
       proxy_pass http://127.0.0.1:8080/;

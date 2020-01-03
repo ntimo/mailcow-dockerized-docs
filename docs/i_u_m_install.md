@@ -4,7 +4,7 @@
 
 You need Docker and Docker Compose.
 
-**1\.** Learn how to install [Docker](https://docs.docker.com/engine/installation/linux/) and [Docker Compose](https://docs.docker.com/compose/install/).
+**1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
 Quick installation for most operation systems:
 
@@ -46,7 +46,11 @@ If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.
 
 You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-local_mta/) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
 
-**4\.1\.** OpenStack users and users with a MTU not equal to 1500:
+Some updates modify mailcow.conf and add new parameters. It is hard to keep track of them in the documentation. Please check their description and, if unsure, ask at the known channels for advise.
+
+**4\.1\.** Users with a MTU not equal to 1500 (e.g. OpenStack):
+
+**Whenever you run into trouble and strange phenomena, please check your MTU.**
 
 Edit `docker-compose.yml` and change the network settings according to your MTU.
 Add the new driver_opts parameter like this:
@@ -59,6 +63,13 @@ networks:
     ...
 ```
 
+**4\.2\.** Users without an IPv6 enabled network on their host system:
+
+**Enable IPv6. Finally.**
+
+If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to [disable IPv6](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-disable_ipv6/) for the mailcow network to prevent unforeseen issues.
+
+
 **5\.** Pull the images and run the composer file. The parameter `-d` will start mailcow: dockerized detached:
 ```
 docker-compose pull
@@ -70,3 +81,5 @@ Done!
 You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials `admin` + password `moohoo`.
 
 The database will be initialized right after a connection to MySQL can be established.
+
+Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker-compose down` without removing persistent data.
